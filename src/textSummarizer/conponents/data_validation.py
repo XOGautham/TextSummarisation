@@ -18,7 +18,8 @@ class DataValidation:
                 if file not in self.config.ALL_REQUIRED_FILES:
                     valadation_status = False
                     with open(self.config.STATUS_FILE, "w") as f:
-                        f.write(f"Validation status : {valadation_status}")
+                        f.write(f"Validation status : {valadation_status} at {file}")
+                    break
                 else:
                     valadation_status = True
                     with open(self.config.STATUS_FILE, "w") as f:
