@@ -1,6 +1,7 @@
 from textSummarizer.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from textSummarizer.pipeline.stage_02_data_validation import DataValidationPipeline
 from textSummarizer.pipeline.stage_03_data_transformation import DataTransformationPipeline
+from textSummarizer.pipeline.stage_04_model_trainer import ModelTrainerPipeline
 from textSummarizer.logging import logger
 
 STAGE_NAME  = "Data Ingestion"
@@ -27,6 +28,17 @@ STAGE_NAME = "Data Transformation"
 try:
     logger.info(f'Starting {STAGE_NAME}...')
     data_transformation = DataTransformationPipeline()
+    data_transformation.main()
+    logger.info(f'>>>>>> Completed {STAGE_NAME} <<<<<<<')
+except Exception as exception:
+    logger.exception(exception)
+    raise exception
+
+
+STAGE_NAME = "Model Training"
+try:
+    logger.info(f'Starting {STAGE_NAME}...')
+    data_transformation = ModelTrainerPipeline()
     data_transformation.main()
     logger.info(f'>>>>>> Completed {STAGE_NAME} <<<<<<<')
 except Exception as exception:
